@@ -129,3 +129,5 @@ __github-slug() {
 }
 
 alias ${_GITHUB_SLUG_COMMAND:-github-slug}='__github-slug'
+
+# vim:list:ts=2
