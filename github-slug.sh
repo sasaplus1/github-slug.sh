@@ -74,6 +74,8 @@ __github-slug() {
         u)
           user="$OPTARG"
           ;;
+        *)
+          ;;
       esac
     done
 
@@ -110,6 +112,7 @@ __github-slug() {
     [[ "$order" =~ ^a ]] && order=first
     [[ "$order" =~ ^d ]] && order=last
 
+    # shellcheck disable=SC2059
     json=$(hub api graphql -f query="$(printf -- "$query" "$user" "$order" "$count")")
 
     local select=true
@@ -128,6 +131,7 @@ __github-slug() {
   )
 }
 
-alias ${_GITHUB_SLUG_COMMAND:-github-slug}='__github-slug'
+# shellcheck disable=SC2139
+alias "${_GITHUB_SLUG_COMMAND:-github-slug}"='__github-slug'
 
 # vim:list:ts=2
