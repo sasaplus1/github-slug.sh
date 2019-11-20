@@ -6,3 +6,7 @@ get slugs from GitHub
 
 - [hub](https://hub.github.com/)
 - [jq](https://stedolan.github.io/jq/)
+
+## License
+
+The MIT license.
