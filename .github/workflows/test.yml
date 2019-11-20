@@ -1,0 +1,15 @@
+name: test
+
+on:
+  - push
+  - pull_request
+
+jobs:
+  lint:
+    name: lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+        with:
+          fetch-depth: 1
+      - run: docker run --rm -v "$(pwd):/mnt" koalaman/shellcheck:stable ./github-slug.sh
