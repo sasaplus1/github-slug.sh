@@ -4,10 +4,46 @@
 
 get slugs from GitHub
 
-## Dependencies
+## Installation
+
+add to `.bashrc` or `.bash_profile` the following:
+
+```console
+. /path/to/github-slug.sh
+```
+
+## Requirements
 
 - [hub](https://hub.github.com/)
 - [jq](https://stedolan.github.io/jq/)
+
+## Usage
+
+```console
+$ github-slug -u sasaplus1 # output repository slugs
+```
+
+```console
+$ github-slug -u sasaplus1 -p true # output only private repository slugs
+```
+
+```console
+$ github-slug -u sasaplus1 -p false # output repository slugs without private repositories
+```
+
+more info:
+
+```console
+$ github-slug -h
+```
+
+## Change command name
+
+```console
+$ export _GITHUB_SLUG_COMMAND=slug
+$ . /path/to/github-slug.sh
+$ slug -h
+```
 
 ## License
 
