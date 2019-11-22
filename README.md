@@ -19,16 +19,22 @@ add to `.bashrc` or `.bash_profile` the following:
 
 ## Usage
 
-```console
-$ github-slug -u sasaplus1 # output repository slugs
-```
+output repository slugs:
 
 ```console
-$ github-slug -u sasaplus1 -p true # output only private repository slugs
+$ github-slug -u sasaplus1
 ```
 
+output only private repository slugs:
+
 ```console
-$ github-slug -u sasaplus1 -p false # output repository slugs without private repositories
+$ github-slug -u sasaplus1 -p true
+```
+
+output repository slugs without private repositories:
+
+```console
+$ github-slug -u sasaplus1 -p false
 ```
 
 more info:
