@@ -1,6 +1,6 @@
 # github-slug.sh
 
-[![test](https://github.com/sasaplus1/github-slug.sh/workflows/test/badge.svg)](https://github.com/sasaplus1/github-slug.sh)
+[![test](https://github.com/sasaplus1/github-slug.sh/workflows/test/badge.svg)](https://github.com/sasaplus1/github-slug.sh/actions?query=workflow%3Atest)
 
 get slugs from GitHub
 
