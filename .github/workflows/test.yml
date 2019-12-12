@@ -10,6 +10,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
+      - uses: docker://koalaman/shellcheck:stable
         with:
-          fetch-depth: 1
-      - run: docker run --rm -v "$(pwd):/mnt" koalaman/shellcheck:stable ./github-slug.sh
+          args: ./github-slug.sh
