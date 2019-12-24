@@ -37,6 +37,12 @@ output repository slugs without private repositories:
 $ github-slug -u sasaplus1 -p false
 ```
 
+for GitHub Enterprise:
+
+```console
+$ GITHUB_HOST=example.com github-slug -u sasaplus1
+```
+
 more info:
 
 ```console
