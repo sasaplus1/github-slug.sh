@@ -131,7 +131,6 @@ __github-slug() {
   )
 }
 
-# shellcheck disable=SC2139
-alias "${_GITHUB_SLUG_COMMAND:-github-slug}"='__github-slug'
+eval "$(printf -- '%s() { __github-slug "$@"; }' "${_GITHUB_SLUG_COMMAND:-github-slug}")"
 
 # vim:list:ts=2
