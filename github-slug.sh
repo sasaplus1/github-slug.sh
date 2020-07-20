@@ -113,7 +113,7 @@ __github-slug() {
     [[ "$order" =~ ^d ]] && order=last
 
     # shellcheck disable=SC2059
-    json=$(hub api graphql -f query="$(printf -- "$query" "$user" "$order" "$count")")
+    json=$(gh api graphql -f query="$(printf -- "$query" "$user" "$order" "$count")")
 
     local select=true
 
