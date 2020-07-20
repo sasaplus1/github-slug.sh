@@ -79,6 +79,26 @@ __github-slug() {
       esac
     done
 
+    local gh=
+
+    gh=$(bash -c 'type gh >/dev/null 2>&1; echo $?')
+
+    if [ "$gh" -ne 0 ]
+    then
+      echo 'gh command not found' >&2
+      exit 2
+    fi
+
+    local jq=
+
+    jq=$(bash -c 'type gh >/dev/null 2>&1; echo $?')
+
+    if [ "$jq" -ne 0 ]
+    then
+      echo 'jq command not found' >&2
+      exit 2
+    fi
+
     local query=
 
     # NOTE: don't replace Tab indentations
