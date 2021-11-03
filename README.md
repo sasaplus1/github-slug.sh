@@ -15,7 +15,6 @@ add to `.bashrc` or `.bash_profile` the following:
 ## Requirements
 
 - [gh](https://cli.github.com/)
-- [jq](https://stedolan.github.io/jq/)
 
 ## Usage
 
