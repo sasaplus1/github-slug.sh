@@ -79,9 +79,7 @@ __github-slug() {
       esac
     done
 
-    local gh=
-
-    gh=$(bash -c 'type gh >/dev/null 2>&1; echo $?')
+    local -r gh=$(bash -c 'type gh >/dev/null 2>&1; echo $?')
 
     if [ "$gh" -ne 0 ]
     then
@@ -89,20 +87,15 @@ __github-slug() {
       exit 2
     fi
 
-    local jq=
+    shopt -s nocasematch
 
-    jq=$(bash -c 'type gh >/dev/null 2>&1; echo $?')
+    [[ "$order" =~ ^a ]] && order=first
+    [[ "$order" =~ ^d ]] && order=last
 
-    if [ "$jq" -ne 0 ]
-    then
-      echo 'jq command not found' >&2
-      exit 2
-    fi
-
-    local query=
+    shopt -u nocasematch
 
     # NOTE: don't replace Tab indentations
-    query=$(
+    local -r template=$(
       cat <<-'EOB'
 			query {
 			  search(type: REPOSITORY, query: "user:%s", %s: %d) {
@@ -125,17 +118,12 @@ __github-slug() {
 			EOB
     )
 
-    local json=
-
-    shopt -s nocasematch
-
-    [[ "$order" =~ ^a ]] && order=first
-    [[ "$order" =~ ^d ]] && order=last
-
     # shellcheck disable=SC2059
-    json=$(gh api graphql -f query="$(printf -- "$query" "$user" "$order" "$count")")
+    local -r query="$(printf -- "$template" "$user" "$order" "$count")"
 
     local select=true
+
+    shopt -s nocasematch
 
     [[ "$is_archived" =~ true|false ]] && select="$select and .isArchived == $is_archived"
     [[ "$is_disabled" =~ true|false ]] && select="$select and .isDisabled == $is_disabled"
@@ -145,9 +133,11 @@ __github-slug() {
     [[ "$is_private"  =~ true|false ]] && select="$select and .isPrivate  == $is_private"
     [[ "$is_template" =~ true|false ]] && select="$select and .isTemplate == $is_template"
 
-    local filter=".data.search.edges[].node | select($select) | .nameWithOwner"
+    shopt -u nocasematch
 
-    printf -- '%s' "$json" | jq "$filter" | jq -r .
+    local -r filter=".data.search.edges[].node | select($select) | .nameWithOwner"
+
+    command gh api graphql --field query="$query" --jq "$filter"
   )
 }
 
