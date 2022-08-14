@@ -1,0 +1,10 @@
+{
+  "extends": [
+    "config:base",
+    ":automergeAll",
+    ":disableDependencyDashboard",
+    ":label(renovate)",
+    ":reviewer(sasaplus1)",
+    ":timezone(Asia/Tokyo)"
+  ]
+}
