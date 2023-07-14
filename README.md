@@ -4,6 +4,8 @@
 
 get slugs from GitHub
 
+**use [gh repo list](https://cli.github.com/manual/gh_repo_list) instead**
+
 ## Installation
 
 add to `.bashrc` or `.bash_profile` the following:
